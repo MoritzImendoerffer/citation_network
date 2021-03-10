@@ -7,11 +7,14 @@ import pickle
 import datetime
 import concurrent
 
-sc = MyScholarlyScraper(search_term='"digital twin" AND "biotechnology"')
-# sc = MyScholarlyScraper(search_term='biomass valorization')
-sc.load_n_items(20)
-
-def subsequent_iterator(a=0, n=1e3):
+'''
+Funktioniert. 
+TODO: 
+1) Liste mit papers EXTEND liste mit related 
+2) `get_citations` und `fill` über alle einträge aus 1. 
+Wichtig: alles operiert nur auf Liste aus 1
+'''
+def subsequent_iterator(a=0, n=1e7):
     n = int(n)
     for i in range(a, a+n):
         yield i
@@ -19,8 +22,11 @@ def subsequent_iterator(a=0, n=1e3):
 def get_hash(scholarly_item):
     return hash(scholarly_item['bib']['title'].replace(' ', ''))
 
+sterm = 'biomass valorization'
+sc = MyScholarlyScraper(search_term=sterm)
+# sc = MyScholarlyScraper(search_term='biomass valorization')
+sc.load_n_items(50)
 g = nx.Graph()
-
 for i, active_item in enumerate(sc.active_items):
     print(100 * '=')
     print('Started NX Generation')
@@ -36,6 +42,8 @@ for i, active_item in enumerate(sc.active_items):
         for citing_item in citing_items[1]:
             # node id for the current related article
             citing_item_id = get_hash(citing_item)
+            if type(citing_item) != dict:
+                print('A')
             g.add_nodes_from([(citing_item_id, {'meta': citing_item})])
             g.add_edge(active_item_id, citing_item_id)
 
@@ -48,6 +56,8 @@ for i, active_item in enumerate(sc.active_items):
             for related_item in related_items[1]:
                 # node id for the current related article
                 related_item_id = get_hash(related_item)
+                if type(related_item) != dict:
+                    print('A')
                 g.add_nodes_from([(related_item_id, {'meta': related_item})])
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
@@ -62,19 +72,25 @@ for i, active_item in enumerate(sc.active_items):
                     if related_citing_item[1]:  # list could be empty
                         for rel_item in related_citing_item[1]:
                             related_citing_item_id = get_hash(rel_item)
-                            g.add_nodes_from([(related_citing_item_id, {'meta': related_citing_item})])
+                            if type(rel_item) != dict:
+                                print('A')
+                            g.add_nodes_from([(related_citing_item_id, {'meta': rel_item})])
                             g.add_edge(related_item_id, related_citing_item_id)
+
+    with open(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_' + f'{sterm}.pickle', 'wb') as f:
+        pickle.dump(g, f)
 
 print(100 * '=')
 print('Stopped NX Generation')
 print(100 * '=')
 
-from matplotlib import pyplot as plt
-fig, ax = plt.subplots(ncols=1, figsize=(20, 20), dpi=300)
-pos = nx.spring_layout(g)
-nx.draw(g, pos=pos, with_labels=False, node_size=0.2, width=0.1, ax=ax)
-plt.show()
-
-with open(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_' + 'digital_twin.pickle', 'wb') as f:
+with open(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_' + f'{sterm}.pickle', 'wb') as f:
     pickle.dump(g, f)
+
+# TODO instead of saving sc. Save sc.search_result
+with open(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_' + f'{sterm}_search_resuls.pickle', 'wb') as f:
+    pickle.dump(list(sc.search_result), f)
+
+with open(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_' + f'{sterm}_sc.pickle', 'wb') as f:
+    pickle.dump(sc, f)
 
