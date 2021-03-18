@@ -94,3 +94,4 @@ with open(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_' + f'{sterm
 with open(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_' + f'{sterm}_sc.pickle', 'wb') as f:
     pickle.dump(sc, f)
 
+_l = [next(item) for item in sc.search_result]
