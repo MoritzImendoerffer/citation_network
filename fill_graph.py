@@ -20,10 +20,10 @@ TODO:
 Wichtig: alles operiert nur auf Liste aus 1
 '''
 
-file_name_graph = '2021-03-07_21:23:46_digital_twin.pickle'
+file_name_graph = './biomass_valorization_results/2021-03-09_23:49:44_biomass valorization.pickle'
 
 with open(file_name_graph, 'rb') as f:
-    g = pickle.load(f)
+   g = pickle.load(f)
 
 def get_hash(scholarly_item):
     return hash(scholarly_item['bib']['title'].replace(' ', ''))
@@ -31,22 +31,24 @@ def get_hash(scholarly_item):
 # degree of each node (node name, degree)
 deg = [(node_hash, g.degree[node_hash]) for node_hash in g.nodes.keys()]
 # from smalles to largest degree of nodes
-deg.sort(key = lambda x: x[1])
+deg.sort(key=lambda x: x[1])
 
-sc = None
+# loop over all nodes and check whether those nodes with low number of citations were caused by scraping errors
 for i, node_item in enumerate(deg):
     print(100 * '=')
     print('Started Graph fill')
     print(100 * '=')
     node_hash, degree = node_item
-
-
+    node_data = g.nodes[node_hash]['meta']
+    node_title = node_data['bib']['title']
     # the related and citing articles for the current active article (since they are already sorted, simple indexing
     # is enough). Looks like [(index, [{}, {}, ...], success message), ...]
-    related_items = sc.related[i]
-    citing_items = sc.cited_by[i]
-    if citing_items[2]:
-        for citing_item in citing_items[1]:
+    scraper_item = MyScholarlyScraper(search_term=node_title)
+    citing_items = scholarly.citedby(node_data)
+    citing_items = list(citing_items)
+
+    if citing_items:
+        for citing_item in citing_items:
             # node id for the current related article
             citing_item_id = get_hash(citing_item)
             g.add_nodes_from([(citing_item_id, {'meta': citing_item})])

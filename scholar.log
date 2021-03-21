@@ -1,0 +1,36 @@
+WARNING:param.DynamicMap02090:Use of __call__ to set options will be deprecated in the next major release (1.14.0). Use the equivalent .opts method instead.
+WARNING:param.DynamicMap02090:Use of __call__ to set options will be deprecated in the next major release (1.14.0). Use the equivalent .opts method instead.
+WARNING:param.DynamicMap02090:Use of __call__ to set options will be deprecated in the next major release (1.14.0). Use the equivalent .opts method instead.
+WARNING:param.dynamic_operation:Callable raised "ValueError("Options must be defined in one of two formats. Either supply keywords defining the options for the current object, e.g. obj.options(cmap='viridis'), or explicitly define the type, e.g. obj.options({'Image': {'cmap': 'viridis'}}). Supplying both formats is not supported.")".
+Invoked as dynamic_operation(height=300, scale=1.0, width=700, x_range=(-156647.25, 164038.46875), y_range=(-149881.4375, 111171.40625))
+WARNING:param.dynamic_operation:Callable raised "ValueError("Options must be defined in one of two formats. Either supply keywords defining the options for the current object, e.g. obj.options(cmap='viridis'), or explicitly define the type, e.g. obj.options({'Image': {'cmap': 'viridis'}}). Supplying both formats is not supported.")".
+Invoked as dynamic_operation(height=300, scale=1.0, width=700, x_range=(-156647.25, 164038.46875), y_range=(-149881.4375, 111171.40625))
+WARNING:param.dynamic_operation:Callable raised "ValueError("Options must be defined in one of two formats. Either supply keywords defining the options for the current object, e.g. obj.options(cmap='viridis'), or explicitly define the type, e.g. obj.options({'Image': {'cmap': 'viridis'}}). Supplying both formats is not supported.")".
+Invoked as dynamic_operation(height=300, scale=1.0, width=700, x_range=(-156647.25, 164038.46875), y_range=(-149881.4375, 111171.40625))
+WARNING:param.dynamic_operation:Callable raised "ValueError("Options must be defined in one of two formats. Either supply keywords defining the options for the current object, e.g. obj.options(cmap='viridis'), or explicitly define the type, e.g. obj.options({'Image': {'cmap': 'viridis'}}). Supplying both formats is not supported.")".
+Invoked as dynamic_operation(height=300, scale=1.0, width=700, x_range=(-156647.25, 164038.46875), y_range=(-149881.4375, 111171.40625))
+WARNING:param.DynamicMap01539:Use of __call__ to set options will be deprecated in the next major release (1.14.0). Use the equivalent .opts method instead.
+WARNING:param.DynamicMap10391:Use of __call__ to set options will be deprecated in the next major release (1.14.0). Use the equivalent .opts method instead.
+WARNING:param.dynamic_operation:Callable raised "AttributeError("'DataArray' object has no attribute '_file_obj'")".
+Invoked as dynamic_operation(height=400, scale=1.0, width=400, x_range=None, y_range=None)
+WARNING:param.Scatter58933:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.Scatter59444:Setting non-parameter attribute s=50 using a mechanism intended only for parameters
+WARNING:param.Scatter59955:Setting non-parameter attribute s=500 using a mechanism intended only for parameters
+WARNING:param.Scatter60466:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.Scatter60977:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.dynamic_operation:Callable raised "ValueError("Unexpected option 'size' for RGB type across all extensions. Similar options for current extension ('bokeh') are: ['fontsize'].")".
+Invoked as dynamic_operation(height=400, scale=1.0, width=400, x_range=None, y_range=None)
+WARNING:param.Scatter61076:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.dynamic_operation:Callable raised "ValueError("Unexpected option 'markersize' for RGB type across all extensions. No similar options found.")".
+Invoked as dynamic_operation(height=400, scale=1.0, width=400, x_range=None, y_range=None)
+WARNING:param.Scatter61175:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.dynamic_operation:Callable raised "ValueError("Unexpected option 'marker_size' for RGB type across all extensions. No similar options found.")".
+Invoked as dynamic_operation(height=400, scale=1.0, width=400, x_range=None, y_range=None)
+WARNING:param.Scatter61274:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.Scatter61785:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.dynamic_operation:Callable raised "ValueError("Unexpected option 's' for RGB type across all extensions. No similar options found.")".
+Invoked as dynamic_operation(height=400, scale=1.0, width=400, x_range=None, y_range=None)
+WARNING:param.Scatter65856:Setting non-parameter attribute s=10 using a mechanism intended only for parameters
+WARNING:param.dynamic_operation:Callable raised "ValueError("Unexpected option 's' for RGB type across all extensions. No similar options found.")".
+Invoked as dynamic_operation(height=400, scale=1.0, width=400, x_range=None, y_range=None)
+WARNING:param.Curve65296:Use of __call__ to set options will be deprecated in the next major release (1.14.0). Use the equivalent .opts method instead.
